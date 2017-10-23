@@ -1,0 +1,53 @@
+<html>
+<head>
+</head>
+<body>
+<!doctype html>
+<title>풍선</title>
+
+<style>
+	.ballon{
+		width: 50px; height: 400px;
+		background:url('kuma.png');
+		background-size: 100% auto;
+		background-repeat: no-repeat;
+		animation: bMove 8s linear;
+	}
+	@keyframes bMove{
+		0%{background-position: 0 300px; opacity: 0;}
+		20%{opacity: 1;}
+		80%{opacity: 1;}
+		100%{background-position: 0 0; opacity: 0;}
+	}
+</style>
+<script>
+setInterval(attachBalloon,100);
+
+function attachBalloon(){
+	var t = document.createElement("div");
+	t.setAttribute("class","ballon");
+	t.style.position = "absolute";
+
+	t.style.backgroundSize = "100% suto";
+	t.style.top = randomBH(0,window.innerHeiht)+"px";
+	t.style.left = randomBH(0,window.innerWidth)+"px";
+	t.addEventListener("animationend",remove);
+	document.body.appendChild(t);
+}
+
+function remove(){
+	var t = event.target;
+	t.parentNode.removeChild(t);
+}
+
+
+	function randomBH(min, max){
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random()*(max-min+1))+min;
+	}
+</script>
+</idoctype>
+
+</body>
+</html>
